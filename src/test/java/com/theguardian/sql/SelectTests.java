@@ -4,16 +4,14 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
-public class SqlBuilderTests {
-
-    public static final String USER_TABLE = "user";
+public class SelectTests {
 
     @Test
     public void testSimpleSelect() {
         String expected = "SELECT * FROM user";
         String actual = new SqlBuilder()
                 .select()
-                .from(USER_TABLE)
+                .from(TestData.USER_TABLE)
                 .build();
 
         assertEquals(expected, actual);
@@ -21,10 +19,10 @@ public class SqlBuilderTests {
 
     @Test
     public void testSelectWithFields() {
-        String expected = "SELECT firstname,surname,phoneNumber FROM user";
+        String expected = "SELECT firstname, surname, phoneNumber FROM user";
         String actual = new SqlBuilder()
-                .select(Fields.FIRSTNAME, Fields.SURNAME, Fields.PHONE_NUMBER)
-                .from(USER_TABLE)
+                .select(TestData.Fields.FIRSTNAME, TestData.Fields.SURNAME, TestData.Fields.PHONE_NUMBER)
+                .from(TestData.USER_TABLE)
                 .build();
 
         assertEquals(expected, actual);
@@ -32,11 +30,11 @@ public class SqlBuilderTests {
 
     @Test
     public void testSelectWithSimpleWhereClause() {
-        String expected = "SELECT firstname,surname,phoneNumber FROM user WHERE surname = 'bates'";
+        String expected = "SELECT firstname, surname, phoneNumber FROM user WHERE surname = 'bates'";
         String actual = new SqlBuilder()
-                .select(Fields.FIRSTNAME, Fields.SURNAME, Fields.PHONE_NUMBER)
-                .from(USER_TABLE)
-                .where(Fields.SURNAME)
+                .select(TestData.Fields.FIRSTNAME, TestData.Fields.SURNAME, TestData.Fields.PHONE_NUMBER)
+                .from(TestData.USER_TABLE)
+                .where(TestData.Fields.SURNAME)
                 .equalTo("bates")
                 .build();
 
@@ -48,8 +46,8 @@ public class SqlBuilderTests {
         String expected = "SELECT * FROM user WHERE age > 18";
         String actual = new SqlBuilder()
                 .select()
-                .from(USER_TABLE)
-                .where(Fields.AGE)
+                .from(TestData.USER_TABLE)
+                .where(TestData.Fields.AGE)
                 .greaterThan(18)
                 .build();
 
@@ -61,8 +59,8 @@ public class SqlBuilderTests {
         String expected = "SELECT * FROM user WHERE age >= 18";
         String actual = new SqlBuilder()
                 .select()
-                .from(USER_TABLE)
-                .where(Fields.AGE)
+                .from(TestData.USER_TABLE)
+                .where(TestData.Fields.AGE)
                 .greaterThanOrEqualTo(18)
                 .build();
 
@@ -74,8 +72,8 @@ public class SqlBuilderTests {
         String expected = "SELECT * FROM user WHERE age < 18";
         String actual = new SqlBuilder()
                 .select()
-                .from(USER_TABLE)
-                .where(Fields.AGE)
+                .from(TestData.USER_TABLE)
+                .where(TestData.Fields.AGE)
                 .lessThan(18)
                 .build();
 
@@ -87,8 +85,8 @@ public class SqlBuilderTests {
         String expected = "SELECT * FROM user WHERE age <= 18";
         String actual = new SqlBuilder()
                 .select()
-                .from(USER_TABLE)
-                .where(Fields.AGE)
+                .from(TestData.USER_TABLE)
+                .where(TestData.Fields.AGE)
                 .lessThanOrEqualTo(18)
                 .build();
 
@@ -100,8 +98,8 @@ public class SqlBuilderTests {
         String expected = "SELECT * FROM user WHERE surname IN ('bates','shields')";
         String actual = new SqlBuilder()
                 .select()
-                .from(USER_TABLE)
-                .where(Fields.SURNAME)
+                .from(TestData.USER_TABLE)
+                .where(TestData.Fields.SURNAME)
                 .in("bates", "shields")
                 .build();
 
@@ -113,8 +111,8 @@ public class SqlBuilderTests {
         String expected = "SELECT * FROM user WHERE age IN (18,23,45)";
         String actual = new SqlBuilder()
                 .select()
-                .from(USER_TABLE)
-                .where(Fields.AGE)
+                .from(TestData.USER_TABLE)
+                .where(TestData.Fields.AGE)
                 .in(18, 23, 45)
                 .build();
 
@@ -126,8 +124,8 @@ public class SqlBuilderTests {
         String expected = "SELECT * FROM user WHERE age NOT IN (18,23,45)";
         String actual = new SqlBuilder()
                 .select()
-                .from(USER_TABLE)
-                .where(Fields.AGE)
+                .from(TestData.USER_TABLE)
+                .where(TestData.Fields.AGE)
                 .notIn(18, 23, 45)
                 .build();
 
@@ -139,10 +137,10 @@ public class SqlBuilderTests {
         String expected = "SELECT * FROM user WHERE firstname = 'rupert' AND surname = 'bates'";
         String actual = new SqlBuilder()
                 .select()
-                .from(USER_TABLE)
-                .where(Fields.FIRSTNAME)
+                .from(TestData.USER_TABLE)
+                .where(TestData.Fields.FIRSTNAME)
                 .equalTo("rupert")
-                .and(Fields.SURNAME)
+                .and(TestData.Fields.SURNAME)
                 .equalTo("bates")
                 .build();
 
@@ -154,10 +152,10 @@ public class SqlBuilderTests {
         String expected = "SELECT * FROM user WHERE firstname = 'rupert' AND age >= 18";
         String actual = new SqlBuilder()
                 .select()
-                .from(USER_TABLE)
-                .where(Fields.FIRSTNAME)
+                .from(TestData.USER_TABLE)
+                .where(TestData.Fields.FIRSTNAME)
                 .equalTo("rupert")
-                .and(Fields.AGE)
+                .and(TestData.Fields.AGE)
                 .greaterThanOrEqualTo(18)
                 .build();
 
@@ -169,10 +167,10 @@ public class SqlBuilderTests {
         String expected = "SELECT * FROM user WHERE firstname IN ('rupert','Emily') AND age >= 18";
         String actual = new SqlBuilder()
                 .select()
-                .from(USER_TABLE)
-                .where(Fields.FIRSTNAME)
+                .from(TestData.USER_TABLE)
+                .where(TestData.Fields.FIRSTNAME)
                 .in("rupert", "Emily")
-                .and(Fields.AGE)
+                .and(TestData.Fields.AGE)
                 .greaterThanOrEqualTo(18)
                 .build();
 
@@ -184,8 +182,8 @@ public class SqlBuilderTests {
         String expected = "SELECT * FROM user WHERE firstname != 'rupert'";
         String actual = new SqlBuilder()
                 .select()
-                .from(USER_TABLE)
-                .where(Fields.FIRSTNAME)
+                .from(TestData.USER_TABLE)
+                .where(TestData.Fields.FIRSTNAME)
                 .notEqualTo("rupert")
                 .build();
 
@@ -197,18 +195,12 @@ public class SqlBuilderTests {
         String expected = "SELECT * FROM user WHERE firstname LIKE 'rup%'";
         String actual = new SqlBuilder()
                 .select()
-                .from(USER_TABLE)
-                .where(Fields.FIRSTNAME)
+                .from(TestData.USER_TABLE)
+                .where(TestData.Fields.FIRSTNAME)
                 .like("rup%")
                 .build();
 
         assertEquals(expected, actual);
     }
 
-    static class Fields {
-        public static final String SURNAME = "surname";
-        public static final String AGE = "age";
-        public static final String FIRSTNAME = "firstname";
-        public static final String PHONE_NUMBER = "phoneNumber";
-    }
 }

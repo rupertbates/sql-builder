@@ -8,4 +8,8 @@ public class SqlBuilder {
     public SelectQuery select(String... fields) {
         return new SelectQuery(fields);
     }
+
+    public UpdateQuery update(String tableName){
+        return new UpdateQuery(tableName);
+    }
 }

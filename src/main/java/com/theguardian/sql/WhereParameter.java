@@ -3,55 +3,55 @@ package com.theguardian.sql;
 
 public class WhereParameter implements Builder {
     private final String keyword;
-    private final SelectQuery query;
+    private final WhereQuery query;
     private final String name;
     private Object value;
     private Operator operator;
 
 
-    public WhereParameter(SelectQuery query, String keyword, String name) {
+    public WhereParameter(WhereQuery query, String keyword, String name) {
         this.query = query;
         this.keyword = keyword;
         this.name = name;
     }
 
-    public SelectQuery equalTo(Object value) {
+    public WhereQuery equalTo(Object value) {
         return saveValue(value, Operator.EQUALS);
     }
 
-    public SelectQuery greaterThan(Object value) {
+    public WhereQuery greaterThan(Object value) {
         return saveValue(value, Operator.GREATER_THAN);
     }
 
-    public SelectQuery greaterThanOrEqualTo(Object value) {
+    public WhereQuery greaterThanOrEqualTo(Object value) {
         return saveValue(value, Operator.GREATER_THAN_OR_EQUAL_TO);
     }
 
-    public SelectQuery lessThan(Object value) {
+    public WhereQuery lessThan(Object value) {
         return saveValue(value, Operator.LESS_THAN);
     }
 
-    public SelectQuery lessThanOrEqualTo(Object value) {
+    public WhereQuery lessThanOrEqualTo(Object value) {
         return saveValue(value, Operator.LESS_THAN_OR_EQUAL_TO);
     }
 
-    public SelectQuery like(String value) {
+    public WhereQuery like(String value) {
         return saveValue(value, Operator.LIKE);
     }
 
-    public SelectQuery notEqualTo(Object value) {
+    public WhereQuery notEqualTo(Object value) {
         return saveValue(value, Operator.NOT_EQUAL_TO);
     }
 
-    public SelectQuery in(Object... values) {
+    public WhereQuery in(Object... values) {
         return saveValue(values, Operator.IN);
     }
 
-    public SelectQuery notIn(Object... values) {
+    public WhereQuery notIn(Object... values) {
         return saveValue(values, Operator.NOT_IN);
     }
 
-    private SelectQuery saveValue(Object value, Operator operator) {
+    private WhereQuery saveValue(Object value, Operator operator) {
         this.value = value;
         this.operator = operator;
         return query;
