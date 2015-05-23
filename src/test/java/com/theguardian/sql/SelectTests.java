@@ -203,4 +203,19 @@ public class SelectTests {
         assertEquals(expected, actual);
     }
 
+    @Test
+    public void testSelectBySurnameOrAge() {
+        String expected = "SELECT * FROM user WHERE surname = 'bates' OR age >= 18";
+        String actual = new SqlBuilder()
+                .select()
+                .from(TestData.USER_TABLE)
+                .where(TestData.Fields.SURNAME)
+                .equalTo("bates")
+                .or(TestData.Fields.AGE)
+                .greaterThanOrEqualTo(18)
+                .build();
+
+        assertEquals(expected, actual);
+    }
+
 }
