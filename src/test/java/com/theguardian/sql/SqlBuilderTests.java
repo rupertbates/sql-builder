@@ -65,4 +65,30 @@ public class SqlBuilderTests {
 
         assertEquals(expected, actual);
     }
+
+    @Test
+    public void testSelectWithLessThanWhereClause(){
+        String expected = "SELECT * FROM user WHERE age < 18";
+        String actual = new SqlBuilder()
+                .select()
+                .from("user")
+                .where("age")
+                .lessThan(18)
+                .build();
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void testSelectWithLessThanOrEqualToWhereClause(){
+        String expected = "SELECT * FROM user WHERE age <= 18";
+        String actual = new SqlBuilder()
+                .select()
+                .from("user")
+                .where("age")
+                .lessThanOrEqualTo(18)
+                .build();
+
+        assertEquals(expected, actual);
+    }
 }
