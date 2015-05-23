@@ -1,7 +1,5 @@
 package com.theguardian.sql;
 
-import java.util.List;
-
 public class WhereQuery implements Builder {
     private SelectQuery selectQuery;
 

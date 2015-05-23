@@ -7,7 +7,9 @@ public enum Operator {
     GREATER_THAN_OR_EQUAL_TO(">="),
     LESS_THAN_OR_EQUAL_TO("<="),
     LIKE,
-    IN;
+    NOT_EQUAL_TO("!="),
+    IN,
+    NOT_IN("NOT IN");
     private String sqlString;
 
     Operator() {
