@@ -44,7 +44,7 @@ public class SqlBuilderTests {
     }
 
     @Test
-    public void testSelectWithGreaterThanWhereClause() {
+    public void testSelectWithGreaterThan() {
         String expected = "SELECT * FROM user WHERE age > 18";
         String actual = new SqlBuilder()
                 .select()
@@ -57,7 +57,7 @@ public class SqlBuilderTests {
     }
 
     @Test
-    public void testSelectWithGreaterThanOrEqualToWhereClause() {
+    public void testSelectWithGreaterThanOrEqualTo() {
         String expected = "SELECT * FROM user WHERE age >= 18";
         String actual = new SqlBuilder()
                 .select()
@@ -83,7 +83,7 @@ public class SqlBuilderTests {
     }
 
     @Test
-    public void testSelectWithLessThanOrEqualToWhereClause() {
+    public void testSelectWithLessThanOrEqualTo() {
         String expected = "SELECT * FROM user WHERE age <= 18";
         String actual = new SqlBuilder()
                 .select()
@@ -187,6 +187,19 @@ public class SqlBuilderTests {
                 .from(USER_TABLE)
                 .where(Fields.FIRSTNAME)
                 .notEqualTo("rupert")
+                .build();
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void testLike() {
+        String expected = "SELECT * FROM user WHERE firstname LIKE 'rup%'";
+        String actual = new SqlBuilder()
+                .select()
+                .from(USER_TABLE)
+                .where(Fields.FIRSTNAME)
+                .like("rup%")
                 .build();
 
         assertEquals(expected, actual);
