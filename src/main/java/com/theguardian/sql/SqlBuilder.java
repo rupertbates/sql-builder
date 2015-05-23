@@ -12,4 +12,8 @@ public class SqlBuilder {
     public UpdateQuery update(String tableName){
         return new UpdateQuery(tableName);
     }
+
+    public CreateQuery create(String tableName){
+        return new CreateQuery(tableName);
+    }
 }
