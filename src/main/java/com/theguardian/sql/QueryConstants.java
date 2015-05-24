@@ -12,4 +12,14 @@ public class QueryConstants {
     public static final String SINGLE_QUOTE = "'";
     public static final String SPACE = " ";
     public static final String STAR = "*";
+    public static final String INT = "INT";
+    public static final String TEXT = "TEXT";
+    public static final String REAL = "REAL";
+    public static final String PRIMARY_KEY = " PRIMARY KEY";
+    public static final String EMPTY_STRING = "";
+    public static final String NOT_NULL = " NOT NULL";
+    public static final String UPDATE = "UPDATE";
+    public static final String SET = "SET";
+    public static final String FROM = "FROM";
+    public static final String SELECT = "SELECT";
 }

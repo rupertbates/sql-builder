@@ -6,7 +6,7 @@ import static org.junit.Assert.assertEquals;
 
 public class SubQueryTests {
     @Test
-    public void testSubQuery(){
+    public void testSubQueryInUpdate(){
         String expected = "UPDATE user SET login_count = (SELECT login_count + 1 FROM user WHERE id = 1234) WHERE id = 1234";
 
         Builder subquery = new SqlBuilder()

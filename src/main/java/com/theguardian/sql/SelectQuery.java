@@ -47,17 +47,19 @@ public class SelectQuery extends WhereQuery {
 
     @Override
     public String build() {
-        StringBuilder stringBuilder = new StringBuilder("SELECT ");
+        StringBuilder stringBuilder = new StringBuilder(SELECT + SPACE);
 
-        if (functionClause != null && !functionClause.equals(""))
+        if (functionClause != null && !functionClause.equals(EMPTY_STRING))
             stringBuilder.append(functionClause).append("  ");
         else
             for (String field : fields) {
-                stringBuilder.append(field).append(", ");
+                stringBuilder.append(field).append(COMMA);
             }
 
         return trimTwo(stringBuilder)
-                .append(" FROM ")
+                .append(SPACE)
+                .append(FROM)
+                .append(SPACE)
                 .append(table)
                 .append(getWhereClause())
                 .toString();

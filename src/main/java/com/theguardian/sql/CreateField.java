@@ -1,5 +1,7 @@
 package com.theguardian.sql;
 
+import static com.theguardian.sql.QueryConstants.*;
+
 public class CreateField implements Builder {
     private CreateQuery createQuery;
     private String name;
@@ -13,17 +15,17 @@ public class CreateField implements Builder {
     }
 
     public CreateField integer(){
-        type = "INT";
+        type = INT;
         return this;
     }
 
     public CreateField text(){
-        type = "TEXT";
+        type = TEXT;
         return this;
     }
 
     public CreateField real(){
-        type = "REAL";
+        type = REAL;
         return this;
     }
 
@@ -47,6 +49,6 @@ public class CreateField implements Builder {
     }
 
     String buildField(){
-        return name + " " + type + (primaryKey ? " PRIMARY KEY" : "") + (notNull ? " NOT NULL" : "");
+        return name + SPACE + type + (primaryKey ? PRIMARY_KEY : EMPTY_STRING) + (notNull ? NOT_NULL : EMPTY_STRING);
     }
 }

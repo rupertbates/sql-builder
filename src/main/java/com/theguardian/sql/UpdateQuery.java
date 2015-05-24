@@ -3,7 +3,9 @@ package com.theguardian.sql;
 import java.util.Map;
 import java.util.TreeMap;
 
+import static com.theguardian.sql.QueryHelper.getSingleValue;
 import static com.theguardian.sql.QueryHelper.trimTwo;
+import static com.theguardian.sql.QueryConstants.*;
 
 public class UpdateQuery extends WhereQuery {
     private String tableName;
@@ -20,8 +22,13 @@ public class UpdateQuery extends WhereQuery {
 
     @Override
     public String build() {
-        StringBuilder stringBuilder = new StringBuilder("UPDATE ");
-        stringBuilder.append(tableName).append(" SET ");
+        StringBuilder stringBuilder = new StringBuilder(UPDATE);
+        stringBuilder
+                .append(SPACE)
+                .append(tableName)
+                .append(SPACE)
+                .append(SET)
+                .append(SPACE);
 
         for (String field : fields.keySet()) {
             stringBuilder
@@ -37,9 +44,6 @@ public class UpdateQuery extends WhereQuery {
 
     private String getValue(String key) {
         Object value = fields.get(key);
-        if(value instanceof Builder)
-            return "(" + ((Builder) value).build() + ")";
-
-        return value instanceof String ? "'" + value + "'" : String.valueOf(value);
+        return getSingleValue(value);
     }
 }
