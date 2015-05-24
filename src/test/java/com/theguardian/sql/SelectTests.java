@@ -218,4 +218,73 @@ public class SelectTests {
         assertEquals(expected, actual);
     }
 
+    @Test
+    public void testCount(){
+        String expected = "SELECT COUNT(*) FROM user WHERE surname = 'bates' OR age >= 18";
+        String actual = new SqlBuilder()
+                .select()
+                .count()
+                .from(TestData.USER_TABLE)
+                .where(TestData.Fields.SURNAME)
+                .equalTo("bates")
+                .or(TestData.Fields.AGE)
+                .greaterThanOrEqualTo(18)
+                .build();
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void testCountColumn(){
+        String expected = "SELECT COUNT(id) FROM user WHERE surname = 'bates' OR age >= 18";
+        String actual = new SqlBuilder()
+                .select()
+                .count("id")
+                .from(TestData.USER_TABLE)
+                .where(TestData.Fields.SURNAME)
+                .equalTo("bates")
+                .or(TestData.Fields.AGE)
+                .greaterThanOrEqualTo(18)
+                .build();
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void testMax(){
+        String expected = "SELECT MAX(age) FROM user";
+        String actual = new SqlBuilder()
+                .select()
+                .max("age")
+                .from(TestData.USER_TABLE)
+                .build();
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void testMin(){
+        String expected = "SELECT MIN(age) FROM user";
+        String actual = new SqlBuilder()
+                .select()
+                .min("age")
+                .from(TestData.USER_TABLE)
+                .build();
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void testAvg(){
+        String expected = "SELECT AVG(age) FROM user";
+        String actual = new SqlBuilder()
+                .select()
+                .avg("age")
+                .from(TestData.USER_TABLE)
+                .build();
+
+        assertEquals(expected, actual);
+    }
+
+
 }
