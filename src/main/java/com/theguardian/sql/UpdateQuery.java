@@ -26,9 +26,9 @@ public class UpdateQuery extends WhereQuery {
         for (String field : fields.keySet()) {
             stringBuilder
                     .append(field)
-                    .append("=")
+                    .append(QueryConstants.EQUALS)
                     .append(getValue(field))
-                    .append(", ");
+                    .append(QueryConstants.COMMA);
         }
         return trimTwo(stringBuilder)
                 .append(getWhereClause())
@@ -37,6 +37,9 @@ public class UpdateQuery extends WhereQuery {
 
     private String getValue(String key) {
         Object value = fields.get(key);
+        if(value instanceof Builder)
+            return "(" + ((Builder) value).build() + ")";
+
         return value instanceof String ? "'" + value + "'" : String.valueOf(value);
     }
 }

@@ -95,7 +95,7 @@ public class SelectTests {
 
     @Test
     public void testSelectWithStringIn() {
-        String expected = "SELECT * FROM user WHERE surname IN ('bates','shields')";
+        String expected = "SELECT * FROM user WHERE surname IN ('bates', 'shields')";
         String actual = new SqlBuilder()
                 .select()
                 .from(TestData.USER_TABLE)
@@ -108,7 +108,7 @@ public class SelectTests {
 
     @Test
     public void testSelectWithNumericIn() {
-        String expected = "SELECT * FROM user WHERE age IN (18,23,45)";
+        String expected = "SELECT * FROM user WHERE age IN (18, 23, 45)";
         String actual = new SqlBuilder()
                 .select()
                 .from(TestData.USER_TABLE)
@@ -121,7 +121,7 @@ public class SelectTests {
 
     @Test
     public void testSelectWithNumericNotIn() {
-        String expected = "SELECT * FROM user WHERE age NOT IN (18,23,45)";
+        String expected = "SELECT * FROM user WHERE age NOT IN (18, 23, 45)";
         String actual = new SqlBuilder()
                 .select()
                 .from(TestData.USER_TABLE)
@@ -164,7 +164,7 @@ public class SelectTests {
 
     @Test
     public void testSelectByFirstNameInListAndAge() {
-        String expected = "SELECT * FROM user WHERE firstname IN ('rupert','Emily') AND age >= 18";
+        String expected = "SELECT * FROM user WHERE firstname IN ('rupert', 'Emily') AND age >= 18";
         String actual = new SqlBuilder()
                 .select()
                 .from(TestData.USER_TABLE)

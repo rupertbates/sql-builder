@@ -1,9 +1,9 @@
 package com.theguardian.sql;
 
 import static com.theguardian.sql.QueryHelper.trimTwo;
+import static com.theguardian.sql.QueryConstants.*;
 
 public class SelectQuery extends WhereQuery {
-    public static final String STAR = "*";
     private String table;
     private String[] fields;
     private String functionClause;
@@ -13,7 +13,7 @@ public class SelectQuery extends WhereQuery {
     }
 
     public SelectQuery count() {
-        return count(STAR);
+        return count(QueryConstants.STAR);
     }
 
     public SelectQuery count(String field) {
@@ -37,7 +37,7 @@ public class SelectQuery extends WhereQuery {
     }
 
     private String getFunctionClause(String function, String field) {
-        return function + "(" + field + ")";
+        return function + OPEN_BRACKET + field + CLOSE_BRACKET;
     }
 
     public SelectQuery from(String table) {

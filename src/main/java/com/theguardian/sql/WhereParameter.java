@@ -1,4 +1,7 @@
 package com.theguardian.sql;
+import static com.theguardian.sql.QueryConstants.*;
+import static com.theguardian.sql.QueryHelper.getSingleValue;
+import static com.theguardian.sql.QueryHelper.trimTwo;
 
 
 public class WhereParameter implements Builder {
@@ -60,7 +63,7 @@ public class WhereParameter implements Builder {
 
     @Override
     public String build() {
-        return keyword + " " + name + " " + operator + " " + getValue();
+        return keyword + SPACE + name + SPACE + operator + SPACE + getValue();
     }
 
     private String getValue() {
@@ -71,17 +74,13 @@ public class WhereParameter implements Builder {
     }
 
     private String getListOfValues() {
-        StringBuilder stringBuilder = new StringBuilder("(");
+        StringBuilder stringBuilder = new StringBuilder(OPEN_BRACKET);
 
         for (Object o : ((Object[]) value)) {
-            stringBuilder.append(getSingleValue(o)).append(",");
+            stringBuilder.append(getSingleValue(o)).append(COMMA);
         }
-        return stringBuilder.deleteCharAt(stringBuilder.length() - 1)
-                .append(")")
+        return trimTwo(stringBuilder)
+                .append(CLOSE_BRACKET)
                 .toString();
-    }
-
-    private String getSingleValue(Object value) {
-        return value instanceof String ? "'" + value + "'" : String.valueOf(value);
     }
 }
