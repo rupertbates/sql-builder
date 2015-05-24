@@ -13,7 +13,11 @@ public class SqlBuilder {
         return new UpdateQuery(tableName);
     }
 
-    public CreateQuery create(String tableName){
+    public DeleteQuery deleteFrom(String tableName){
+        return new DeleteQuery(tableName);
+    }
+
+    public CreateQuery createTable(String tableName){
         return new CreateQuery(tableName);
     }
 }

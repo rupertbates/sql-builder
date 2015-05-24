@@ -8,13 +8,13 @@ import static org.junit.Assert.assertEquals;
 public class CreateTests {
     @Test
     public void testCreate(){
-        String expected = "CREATE TABLE user (id INT PRIMARY KEY, firstname TEXT NOT NULL, surname TEXT NOT NULL, height REAL)";
+        String expected = "CREATE TABLE user (id INT PRIMARY KEY, firstname TEXT NOT NULL, surname TEXT NOT NULL, age REAL)";
         String actual = new SqlBuilder()
-                .create(USER_TABLE)
+                .createTable(USER_TABLE)
                 .field("id").integer().primaryKey()
                 .field("firstname").text().notNull()
                 .field("surname").text().notNull()
-                .field("height").real()
+                .field("age").real()
                 .build();
 
         assertEquals(expected, actual);
