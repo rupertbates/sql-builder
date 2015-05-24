@@ -14,7 +14,7 @@ public class CreateQuery implements Builder {
     }
 
     public CreateField field(String name){
-        CreateField field = new CreateField(name);
+        CreateField field = new CreateField(this, name);
         fields.add(field);
         return field;
     }
@@ -23,9 +23,9 @@ public class CreateQuery implements Builder {
     public String build() {
         StringBuilder stringBuilder = new StringBuilder("CREATE TABLE ");
         stringBuilder.append(tableName);
-        stringBuilder.append("(");
+        stringBuilder.append(" (");
         for (CreateField field : fields) {
-            stringBuilder.append(field.build());
+            stringBuilder.append(field.buildField());
             stringBuilder.append(", ");
         }
         return trimTwo(stringBuilder)
