@@ -19,6 +19,8 @@ public abstract class WhereQuery implements Builder{
         return createWhereParameter("OR", name);
     }
 
+    public abstract OrderBy orderBy(String... fields);
+
     private WhereParameter createWhereParameter(String keyword, String name) {
         WhereParameter where = new WhereParameter(this, keyword, name);
         whereParameters.add(where);

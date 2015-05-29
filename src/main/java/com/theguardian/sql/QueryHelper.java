@@ -1,5 +1,7 @@
 package com.theguardian.sql;
 
+import static com.theguardian.sql.QueryConstants.COMMA;
+
 class QueryHelper {
 
     static StringBuilder trimTwo(StringBuilder stringBuilder){
@@ -11,5 +13,13 @@ class QueryHelper {
             return QueryConstants.OPEN_BRACKET + ((Builder) value).build() + QueryConstants.CLOSE_BRACKET;
 
         return value instanceof String ? "'" + value + "'" : String.valueOf(value);
+    }
+
+    static String getCommaDelimitedList(String[] values){
+        StringBuilder stringBuilder = new StringBuilder();
+        for (String value : values) {
+            stringBuilder.append(value).append(COMMA);
+        }
+        return trimTwo(stringBuilder).toString();
     }
 }

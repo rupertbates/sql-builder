@@ -24,6 +24,7 @@ public class CreateQuery implements Builder {
         StringBuilder stringBuilder = new StringBuilder("CREATE TABLE ");
         stringBuilder.append(tableName);
         stringBuilder.append(" (");
+
         for (CreateField field : fields) {
             stringBuilder.append(field.buildField());
             stringBuilder.append(", ");

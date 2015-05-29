@@ -61,6 +61,7 @@ public class WhereParameter implements Builder {
     }
 
 
+
     @Override
     public String build() {
         return keyword + SPACE + name + SPACE + operator + SPACE + getValue();
@@ -84,3 +85,4 @@ public class WhereParameter implements Builder {
                 .toString();
     }
 }
+

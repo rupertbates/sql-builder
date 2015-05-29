@@ -1,5 +1,6 @@
 package com.theguardian.sql;
 
+import static com.theguardian.sql.QueryHelper.getCommaDelimitedList;
 import static com.theguardian.sql.QueryHelper.trimTwo;
 import static com.theguardian.sql.QueryConstants.*;
 
@@ -7,6 +8,7 @@ public class SelectQuery extends WhereQuery {
     private String table;
     private String[] fields;
     private String functionClause;
+    private OrderBy orderBy;
 
     public SelectQuery(String[] fields) {
         this.fields = fields;
@@ -46,23 +48,33 @@ public class SelectQuery extends WhereQuery {
     }
 
     @Override
+    public OrderBy orderBy(String... fields){
+        this.orderBy = new OrderBy(this, fields);
+        return this.orderBy;
+    }
+
+    @Override
     public String build() {
         StringBuilder stringBuilder = new StringBuilder(SELECT + SPACE);
 
         if (functionClause != null && !functionClause.equals(EMPTY_STRING))
-            stringBuilder.append(functionClause).append("  ");
+            stringBuilder.append(functionClause);
         else
-            for (String field : fields) {
-                stringBuilder.append(field).append(COMMA);
-            }
+            stringBuilder.append(getCommaDelimitedList(fields));
 
-        return trimTwo(stringBuilder)
+        return stringBuilder
                 .append(SPACE)
                 .append(FROM)
                 .append(SPACE)
                 .append(table)
                 .append(getWhereClause())
+                .append(SPACE)
+                .append(getOrderBy())
                 .toString();
+    }
+
+    private String getOrderBy() {
+        return orderBy != null ? orderBy.toString() : EMPTY_STRING;
     }
 
 }

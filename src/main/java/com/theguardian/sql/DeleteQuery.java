@@ -11,4 +11,9 @@ public class DeleteQuery extends WhereQuery {
     public String build() {
         return "DELETE FROM " + tableName + getWhereClause();
     }
+
+    @Override
+    public OrderBy orderBy(String... fields) {
+        throw new IllegalStateException("Delete queries don't support order by");
+    }
 }

@@ -46,4 +46,9 @@ public class UpdateQuery extends WhereQuery {
         Object value = fields.get(key);
         return getSingleValue(value);
     }
+
+    @Override
+    public OrderBy orderBy(String... fields) {
+        throw new IllegalStateException("Update queries don't support order by");
+    }
 }

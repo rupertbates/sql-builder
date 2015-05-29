@@ -22,4 +22,7 @@ public class QueryConstants {
     public static final String SET = "SET";
     public static final String FROM = "FROM";
     public static final String SELECT = "SELECT";
+    public static final String ASC = "ASC";
+    public static final String DESC = "DESC";
+    public static final String ORDER_BY = "ORDER BY ";
 }
