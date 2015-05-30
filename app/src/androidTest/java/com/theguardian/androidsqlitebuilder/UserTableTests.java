@@ -29,17 +29,18 @@ public class UserTableTests extends AndroidTestCase {
     public void testInsert() {
         UserDBHelper helper = new UserDBHelper(getContext());
         SQLiteDatabase db = helper.getWritableDatabase();
-        db.execSQL(insert()
-                        .into(USER_TABLE)
-                        .values(TestData.ID, TestData.RUPERT, TestData.BATES, TestData.AGE)
-                        .build()
-        );
+        String insertQuery = insert()
+                .into(USER_TABLE)
+                .values(TestData.ID, TestData.RUPERT, TestData.BATES, TestData.AGE)
+                .build();
 
-        String query = select(Fields.ID, Fields.FIRSTNAME, Fields.SURNAME, Fields.AGE)
+        db.execSQL(insertQuery);
+
+        String selectQuery = select(Fields.ID, Fields.FIRSTNAME, Fields.SURNAME, Fields.AGE)
                 .from(USER_TABLE)
                 .build();
 
-        Cursor cursor = helper.getReadableDatabase().rawQuery(query, null);
+        Cursor cursor = helper.getReadableDatabase().rawQuery(selectQuery, null);
 
         assertEquals(1, cursor.getCount());
         assertTrue(cursor.moveToFirst());
