@@ -67,13 +67,12 @@ public class SelectQuery extends WhereQuery {
                 .append(SPACE)
                 .append(table)
                 .append(getWhereClause())
-                .append(SPACE)
                 .append(getOrderBy())
                 .toString();
     }
 
     private String getOrderBy() {
-        return orderBy != null ? orderBy.toString() : EMPTY_STRING;
+        return orderBy != null ? SPACE + orderBy.toString() : EMPTY_STRING;
     }
 
 }
