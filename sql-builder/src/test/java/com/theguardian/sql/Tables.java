@@ -1,6 +1,6 @@
 package com.theguardian.sql;
 
-public class TestData {
+public class Tables {
     public static final String USER_TABLE = "user";
 
     static class Fields {

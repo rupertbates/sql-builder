@@ -3,7 +3,7 @@ package com.theguardian.sql;
 import org.junit.Test;
 
 import static com.theguardian.sql.SqlBuilder.select;
-import static com.theguardian.sql.TestData.*;
+import static com.theguardian.sql.Tables.*;
 import static org.junit.Assert.assertEquals;
 
 public class OrderByTests {
