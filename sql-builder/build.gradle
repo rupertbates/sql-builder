@@ -1,6 +1,43 @@
+plugins {
+    id "com.jfrog.bintray" version "1.1"
+}
+
 apply plugin: 'java'
+apply plugin: 'maven-publish'
+
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            groupId 'com.theguardian.sql'
+            artifactId 'sql-builder'
+            version '0.1'
+            from components.java
+        }
+    }
+}
+bintray {
+    Properties properties = new Properties()
+    properties.load(project.rootProject.file('local.properties').newDataInputStream())
+
+    user = properties.getProperty('user.name')
+    key = properties.getProperty('api.key')
+
+    //publications = ['mavenStuff'] //When uploading Maven-based publication files
+
+    dryRun = false //Whether to run this as dry-run, without deploying
+    publish = true //If version should be auto published after an upload
+    pkg {
+        repo = 'maven'
+        name = 'sql-builder'
+        //userOrg = 'guardian' //An optional organization name when the repo belongs to one of the user's orgs
+        desc = 'A library to help with building sql queries in Java'
+        websiteUrl = 'https://github.com/rupertbates/sql-builder'
+        vcsUrl = 'https://github.com/rupertbates/sql-builder'
+    }
 }
