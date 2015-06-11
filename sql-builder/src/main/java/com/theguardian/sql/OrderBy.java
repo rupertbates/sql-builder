@@ -24,6 +24,10 @@ public class OrderBy implements Builder{
         return selectQuery;
     }
 
+    public SelectQuery limit(int limitValue){
+        return selectQuery.limit(limitValue);
+    }
+
     @Override
     public String build() {
         return selectQuery.build();

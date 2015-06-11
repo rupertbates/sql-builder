@@ -4,10 +4,12 @@ import static com.theguardian.sql.QueryHelper.getList;
 import static com.theguardian.sql.QueryConstants.*;
 
 public class SelectQuery extends WhereQuery {
+    public static final int NO_LIMIT = -1;
     private String table;
     private String[] fields;
     private String functionClause;
     private OrderBy orderBy;
+    private int limitValue = NO_LIMIT;
 
     public SelectQuery(String[] fields) {
         this.fields = fields;
@@ -52,6 +54,11 @@ public class SelectQuery extends WhereQuery {
         return this.orderBy;
     }
 
+    public SelectQuery limit(int limitValue){
+        this.limitValue = limitValue;
+        return this;
+    }
+
     @Override
     public String build() {
         StringBuilder stringBuilder = new StringBuilder(SELECT + SPACE);
@@ -68,7 +75,12 @@ public class SelectQuery extends WhereQuery {
                 .append(table)
                 .append(getWhereClause())
                 .append(getOrderBy())
+                .append(getLimit())
                 .toString();
+    }
+
+    private String getLimit() {
+        return limitValue == NO_LIMIT ? EMPTY_STRING : SPACE + LIMIT + SPACE + limitValue;
     }
 
     private String getOrderBy() {
