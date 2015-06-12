@@ -9,9 +9,9 @@ import static org.junit.Assert.assertEquals;
 public class CreateTests {
     @Test
     public void testCreate() {
-        String expected = "CREATE TABLE user (id INT PRIMARY KEY, firstname TEXT NOT NULL, surname TEXT NOT NULL, age REAL)";
+        String expected = "CREATE TABLE user (id INT PRIMARY KEY AUTOINCREMENT, firstname TEXT NOT NULL, surname TEXT NOT NULL, age REAL)";
         String actual = createTable(USER_TABLE)
-                .field(Tables.Fields.ID).integer().primaryKey()
+                .field(Tables.Fields.ID).integer().primaryKey().autoIncrement()
                 .field(Tables.Fields.FIRSTNAME).text().notNull()
                 .field(Tables.Fields.SURNAME).text().notNull()
                 .field(Tables.Fields.AGE).real()

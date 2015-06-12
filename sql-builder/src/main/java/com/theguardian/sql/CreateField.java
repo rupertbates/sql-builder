@@ -8,6 +8,7 @@ public class CreateField implements Builder {
     private String type;
     private boolean primaryKey = false;
     private boolean notNull;
+    private boolean autoIncrement;
 
     public CreateField(CreateQuery createQuery, String name) {
         this.createQuery = createQuery;
@@ -39,6 +40,11 @@ public class CreateField implements Builder {
         return this;
     }
 
+    public CreateField autoIncrement(){
+        autoIncrement = true;
+        return this;
+    }
+
     public CreateField field(String name){
         return createQuery.field(name);
     }
@@ -49,6 +55,6 @@ public class CreateField implements Builder {
     }
 
     String buildField(){
-        return name + SPACE + type + (primaryKey ? PRIMARY_KEY : EMPTY_STRING) + (notNull ? NOT_NULL : EMPTY_STRING);
+        return name + SPACE + type + (primaryKey ? PRIMARY_KEY : EMPTY_STRING) + (autoIncrement ? AUTOINCREMENT : EMPTY_STRING) + (notNull ? NOT_NULL : EMPTY_STRING);
     }
 }
