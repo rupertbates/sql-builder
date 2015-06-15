@@ -221,6 +221,18 @@ public class SelectTests {
     }
 
     @Test
+    public void testCountwithAdditionalFields() {
+        String expected = "SELECT surname, COUNT(surname) FROM user GROUP BY surname";
+        String actual = select(Fields.SURNAME)
+                .count(Fields.SURNAME)
+                .from(Tables.USER_TABLE)
+
+                .build();
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
     public void testCountColumn() {
         String expected = "SELECT COUNT(id) FROM user WHERE surname = 'bates' OR age >= 18";
         String actual = select()

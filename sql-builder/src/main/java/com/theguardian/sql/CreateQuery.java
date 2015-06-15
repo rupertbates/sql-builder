@@ -7,7 +7,7 @@ import static com.theguardian.sql.QueryHelper.trimTwo;
 
 public class CreateQuery implements Builder {
     private String tableName;
-    private List<CreateField> fields = new ArrayList<>();
+    private List<CreateField> fields = new ArrayList<CreateField>();
 
     public CreateQuery(String tableName) {
         this.tableName = tableName;

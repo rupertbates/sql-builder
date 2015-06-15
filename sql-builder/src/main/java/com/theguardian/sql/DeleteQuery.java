@@ -16,4 +16,9 @@ public class DeleteQuery extends WhereQuery {
     public OrderBy orderBy(String... fields) {
         throw new IllegalStateException("Delete queries don't support order by");
     }
+
+    @Override
+    public GroupBy groupBy(String... fields) {
+        throw new IllegalStateException("Delete queries don't support group by");
+    }
 }

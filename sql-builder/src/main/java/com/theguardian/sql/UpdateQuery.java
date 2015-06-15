@@ -51,4 +51,9 @@ public class UpdateQuery extends WhereQuery {
     public OrderBy orderBy(String... fields) {
         throw new IllegalStateException("Update queries don't support order by");
     }
+
+    @Override
+    public GroupBy groupBy(String... fields) {
+        throw new IllegalStateException("Update queries don't support group by");
+    }
 }

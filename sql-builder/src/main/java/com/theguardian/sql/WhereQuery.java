@@ -3,7 +3,7 @@ package com.theguardian.sql;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class WhereQuery implements Builder{
+public abstract class WhereQuery implements Builder {
 
     protected List<WhereParameter> whereParameters = new ArrayList<>();
 
@@ -20,6 +20,8 @@ public abstract class WhereQuery implements Builder{
     }
 
     public abstract OrderBy orderBy(String... fields);
+
+    public abstract GroupBy groupBy(String... fields);
 
     private WhereParameter createWhereParameter(String keyword, String name) {
         WhereParameter where = new WhereParameter(this, keyword, name);
