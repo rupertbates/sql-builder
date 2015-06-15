@@ -7,15 +7,15 @@ import static com.theguardian.sql.QueryHelper.getSingleValue;
 import static com.theguardian.sql.QueryHelper.trimTwo;
 import static com.theguardian.sql.QueryConstants.*;
 
-public class UpdateQuery extends WhereQuery {
+public class UpdateStatement extends WhereClause {
     private String tableName;
-    Map<String, Object> fields = new TreeMap<String, Object>();
+    Map<String, Object> fields = new TreeMap<>();
 
-    public UpdateQuery(String tableName) {
+    public UpdateStatement(String tableName) {
         this.tableName = tableName;
     }
 
-    public UpdateQuery set(String field, Object value) {
+    public UpdateStatement set(String field, Object value) {
         fields.put(field, value);
         return this;
     }

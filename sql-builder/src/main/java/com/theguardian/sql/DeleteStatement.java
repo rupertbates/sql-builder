@@ -1,9 +1,9 @@
 package com.theguardian.sql;
 
-public class DeleteQuery extends WhereQuery {
+public class DeleteStatement extends WhereClause {
     private String tableName;
 
-    public DeleteQuery(String tableName) {
+    public DeleteStatement(String tableName) {
         this.tableName = tableName;
     }
 

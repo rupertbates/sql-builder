@@ -4,23 +4,23 @@ import static com.theguardian.sql.QueryHelper.getListOfValues;
 import static com.theguardian.sql.QueryHelper.getListWithBrackets;
 import static com.theguardian.sql.QueryConstants.SPACE;
 
-public class InsertQuery implements Builder {
+public class InsertStatement implements StatementBuilder {
     private String tableName;
     private String[] columns;
     private Object[] values;
 
-    public InsertQuery into(String tableName, String... columns) {
+    public InsertStatement into(String tableName, String... columns) {
         this.tableName = tableName;
         this.columns = columns;
         return this;
     }
 
-    public InsertQuery into(String tableName) {
+    public InsertStatement into(String tableName) {
         this.tableName = tableName;
         return this;
     }
 
-    public InsertQuery values(Object... values) {
+    public InsertStatement values(Object... values) {
         this.values = values;
         return this;
     }

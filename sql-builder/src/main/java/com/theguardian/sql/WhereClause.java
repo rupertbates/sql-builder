@@ -3,7 +3,7 @@ package com.theguardian.sql;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class WhereQuery implements Builder {
+public abstract class WhereClause implements StatementBuilder {
 
     protected List<WhereParameter> whereParameters = new ArrayList<>();
 

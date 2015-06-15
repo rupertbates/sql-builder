@@ -11,8 +11,8 @@ class QueryHelper {
     }
 
     static String getSingleValue(Object value){
-        if(value instanceof Builder) //If this is a subquery then evaluate it
-            return QueryConstants.OPEN_BRACKET + ((Builder) value).build() + QueryConstants.CLOSE_BRACKET;
+        if(value instanceof StatementBuilder) //If this is a subquery then evaluate it
+            return QueryConstants.OPEN_BRACKET + ((StatementBuilder) value).build() + QueryConstants.CLOSE_BRACKET;
 
         return value instanceof String ? "'" + value + "'" : String.valueOf(value);
     }

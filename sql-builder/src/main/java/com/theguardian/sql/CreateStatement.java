@@ -5,11 +5,11 @@ import java.util.List;
 
 import static com.theguardian.sql.QueryHelper.trimTwo;
 
-public class CreateQuery implements Builder {
+public class CreateStatement implements StatementBuilder {
     private String tableName;
-    private List<CreateField> fields = new ArrayList<CreateField>();
+    private List<CreateField> fields = new ArrayList<>();
 
-    public CreateQuery(String tableName) {
+    public CreateStatement(String tableName) {
         this.tableName = tableName;
     }
 

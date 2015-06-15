@@ -1,27 +1,27 @@
 package com.theguardian.sql;
 
 public class SqlBuilder {
-    public static SelectQuery select() {
+    public static SelectStatement select() {
         return select("*");
     }
 
-    public static SelectQuery select(String... fields) {
-        return new SelectQuery(fields);
+    public static SelectStatement select(String... fields) {
+        return new SelectStatement(fields);
     }
 
-    public static UpdateQuery update(String tableName) {
-        return new UpdateQuery(tableName);
+    public static UpdateStatement update(String tableName) {
+        return new UpdateStatement(tableName);
     }
 
-    public static InsertQuery insert() {
-        return new InsertQuery();
+    public static InsertStatement insert() {
+        return new InsertStatement();
     }
 
-    public static DeleteQuery deleteFrom(String tableName) {
-        return new DeleteQuery(tableName);
+    public static DeleteStatement deleteFrom(String tableName) {
+        return new DeleteStatement(tableName);
     }
 
-    public static CreateQuery createTable(String tableName) {
-        return new CreateQuery(tableName);
+    public static CreateStatement createTable(String tableName) {
+        return new CreateStatement(tableName);
     }
 }

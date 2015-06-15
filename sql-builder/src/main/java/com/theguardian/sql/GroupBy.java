@@ -1,26 +1,24 @@
 package com.theguardian.sql;
 
-import java.security.cert.CertPathBuilder;
-
 import static com.theguardian.sql.QueryConstants.GROUP_BY;
 import static com.theguardian.sql.QueryHelper.getList;
 
-public class GroupBy implements Builder{
-    private SelectQuery selectQuery;
+public class GroupBy implements StatementBuilder {
+    private SelectStatement selectStatement;
     private String[] fields;
 
-    public GroupBy(SelectQuery selectQuery, String[] fields) {
-        this.selectQuery = selectQuery;
+    public GroupBy(SelectStatement selectStatement, String[] fields) {
+        this.selectStatement = selectStatement;
         this.fields = fields;
     }
 
-    public SelectQuery limit(int limitValue){
-        return selectQuery.limit(limitValue);
+    public SelectStatement limit(int limitValue){
+        return selectStatement.limit(limitValue);
     }
 
     @Override
     public String build() {
-        return selectQuery.build();
+        return selectStatement.build();
     }
 
     @Override
@@ -29,6 +27,6 @@ public class GroupBy implements Builder{
     }
 
     public OrderBy orderBy(String... fields) {
-        return selectQuery.orderBy(fields);
+        return selectStatement.orderBy(fields);
     }
 }

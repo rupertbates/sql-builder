@@ -1,7 +1,5 @@
 package com.theguardian.sql;
 
-import java.util.List;
-
 import static com.theguardian.sql.QueryConstants.CLOSE_BRACKET;
 import static com.theguardian.sql.QueryConstants.COMMA;
 import static com.theguardian.sql.QueryConstants.EMPTY_STRING;
@@ -12,7 +10,7 @@ import static com.theguardian.sql.QueryConstants.SELECT;
 import static com.theguardian.sql.QueryConstants.SPACE;
 import static com.theguardian.sql.QueryHelper.getList;
 
-public class SelectQuery extends WhereQuery {
+public class SelectStatement extends WhereClause {
     public static final int NO_LIMIT = -1;
     private String table;
     private String[] fields;
@@ -20,49 +18,47 @@ public class SelectQuery extends WhereQuery {
     private OrderBy orderBy;
     private int limitValue = NO_LIMIT;
     private GroupBy groupBy;
-    private String alias;
 
-    public SelectQuery(String[] fields) {
+    public SelectStatement(String[] fields) {
         this.fields = fields;
     }
 
-    public SelectQuery count() {
+    public SelectStatement count() {
         return count(QueryConstants.STAR);
     }
 
-    public SelectQuery count(String field) {
+    public SelectStatement count(String field) {
         return count(field, null);
     }
 
-    public SelectQuery count(String field, String alias) {
+    public SelectStatement count(String field, String alias) {
         this.functionClause = getFunctionClause(QueryConstants.COUNT, field, alias);
-        this.alias = alias;
         return this;
     }
 
-    public SelectQuery max(String field) {
+    public SelectStatement max(String field) {
         return max(field, null);
     }
 
-    public SelectQuery max(String field, String alias) {
+    public SelectStatement max(String field, String alias) {
         this.functionClause = getFunctionClause(QueryConstants.MAX, field, alias);
         return this;
     }
 
-    public SelectQuery min(String field) {
+    public SelectStatement min(String field) {
         return min(field, null);
     }
 
-    public SelectQuery min(String field, String alias) {
+    public SelectStatement min(String field, String alias) {
         this.functionClause = getFunctionClause(QueryConstants.MIN, field, alias);
         return this;
     }
 
-    public SelectQuery avg(String field) {
+    public SelectStatement avg(String field) {
         return avg(field, null);
     }
 
-    public SelectQuery avg(String field, String alias) {
+    public SelectStatement avg(String field, String alias) {
         this.functionClause = getFunctionClause(QueryConstants.AVG, field, alias);
         return this;
     }
@@ -75,7 +71,7 @@ public class SelectQuery extends WhereQuery {
         return alias != null ? QueryConstants.AS + alias : EMPTY_STRING;
     }
 
-    public SelectQuery from(String table) {
+    public SelectStatement from(String table) {
         this.table = table;
         return this;
     }
@@ -92,7 +88,7 @@ public class SelectQuery extends WhereQuery {
         return this.groupBy;
     }
 
-    public SelectQuery limit(int limitValue) {
+    public SelectStatement limit(int limitValue) {
         this.limitValue = limitValue;
         return this;
     }

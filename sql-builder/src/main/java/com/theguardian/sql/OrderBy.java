@@ -4,33 +4,33 @@ import static com.theguardian.sql.QueryConstants.*;
 import static com.theguardian.sql.QueryConstants.SPACE;
 import static com.theguardian.sql.QueryHelper.getList;
 
-public class OrderBy implements Builder{
-    private SelectQuery selectQuery;
+public class OrderBy implements StatementBuilder {
+    private SelectStatement selectStatement;
     private String[] fields;
     private String order = ASC;
 
-    public OrderBy(SelectQuery selectQuery, String[] fields) {
-        this.selectQuery = selectQuery;
+    public OrderBy(SelectStatement selectStatement, String[] fields) {
+        this.selectStatement = selectStatement;
         this.fields = fields;
     }
 
-    public SelectQuery asc(){
+    public SelectStatement asc(){
         this.order = ASC;
-        return selectQuery;
+        return selectStatement;
     }
 
-    public SelectQuery desc(){
+    public SelectStatement desc(){
         this.order = DESC;
-        return selectQuery;
+        return selectStatement;
     }
 
-    public SelectQuery limit(int limitValue){
-        return selectQuery.limit(limitValue);
+    public SelectStatement limit(int limitValue){
+        return selectStatement.limit(limitValue);
     }
 
     @Override
     public String build() {
-        return selectQuery.build();
+        return selectStatement.build();
     }
 
     @Override

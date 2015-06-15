@@ -2,16 +2,16 @@ package com.theguardian.sql;
 
 import static com.theguardian.sql.QueryConstants.*;
 
-public class CreateField implements Builder {
-    private CreateQuery createQuery;
+public class CreateField implements StatementBuilder {
+    private CreateStatement createStatement;
     private String name;
     private String type;
     private boolean primaryKey = false;
     private boolean notNull;
     private boolean autoIncrement;
 
-    public CreateField(CreateQuery createQuery, String name) {
-        this.createQuery = createQuery;
+    public CreateField(CreateStatement createStatement, String name) {
+        this.createStatement = createStatement;
         this.name = name;
     }
 
@@ -46,12 +46,12 @@ public class CreateField implements Builder {
     }
 
     public CreateField field(String name){
-        return createQuery.field(name);
+        return createStatement.field(name);
     }
 
     @Override
     public String build() {
-        return createQuery.build();
+        return createStatement.build();
     }
 
     String buildField(){

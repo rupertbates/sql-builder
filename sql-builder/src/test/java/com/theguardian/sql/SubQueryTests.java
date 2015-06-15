@@ -11,7 +11,7 @@ public class SubQueryTests {
     public void testSubQueryInUpdate() {
         String expected = "UPDATE user SET login_count = (SELECT login_count + 1 FROM user WHERE id = 1234) WHERE id = 1234";
 
-        Builder subquery = select(Tables.Fields.LOGIN_COUNT + " + 1")
+        StatementBuilder subquery = select(Tables.Fields.LOGIN_COUNT + " + 1")
                 .from(Tables.USER_TABLE)
                 .where(Tables.Fields.ID)
                 .equalTo(1234);
@@ -29,7 +29,7 @@ public class SubQueryTests {
     public void testSelectSubQuery() {
         String expected = "SELECT firstname, surname FROM user WHERE login_count > (SELECT AVG(login_count) FROM user)";
 
-        Builder subquery = select()
+        StatementBuilder subquery = select()
                 .avg(Tables.Fields.LOGIN_COUNT)
                 .from(Tables.USER_TABLE);
 
