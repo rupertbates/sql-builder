@@ -23,10 +23,6 @@ public class SelectStatement extends WhereClause {
         this.fields = fields;
     }
 
-    public SelectStatement count() {
-        return count(QueryConstants.STAR);
-    }
-
     public SelectStatement count(String field) {
         return count(field, null);
     }

@@ -209,7 +209,7 @@ public class SelectTests {
     public void testCount() {
         String expected = "SELECT COUNT(*) FROM user WHERE surname = 'bates' OR age >= 18";
         String actual = select()
-                .count()
+                .count(QueryConstants.STAR)
                 .from(Tables.USER_TABLE)
                 .where(Fields.SURNAME)
                 .equalTo("bates")
