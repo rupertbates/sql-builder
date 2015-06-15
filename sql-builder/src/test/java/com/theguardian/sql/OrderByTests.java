@@ -10,7 +10,7 @@ public class OrderByTests {
     @Test
     public void testOrderByImplicitAsc(){
         String expected = "SELECT * FROM user ORDER BY age ASC";
-        String actual = select()
+        String actual = select(QueryConstants.STAR)
                 .from(USER_TABLE)
                 .orderBy(Fields.AGE)
                 .build();
@@ -21,7 +21,7 @@ public class OrderByTests {
     @Test
     public void testOrderByExplicitAsc(){
         String expected = "SELECT * FROM user ORDER BY age ASC";
-        String actual = select()
+        String actual = select(QueryConstants.STAR)
                 .from(USER_TABLE)
                 .orderBy(Fields.AGE)
                 .asc()
@@ -33,7 +33,7 @@ public class OrderByTests {
     @Test
     public void testOrderByWithWhere(){
         String expected = "SELECT * FROM user WHERE surname = 'bates' ORDER BY age DESC";
-        String actual = select()
+        String actual = select(QueryConstants.STAR)
                 .from(USER_TABLE)
                 .where(Fields.SURNAME)
                 .equalTo("bates")
@@ -47,7 +47,7 @@ public class OrderByTests {
     @Test
     public void testOrderByDesc(){
         String expected = "SELECT * FROM user ORDER BY age DESC";
-        String actual = select()
+        String actual = select(QueryConstants.STAR)
                 .from(USER_TABLE)
                 .orderBy(Fields.AGE)
                 .desc()
@@ -59,7 +59,7 @@ public class OrderByTests {
     @Test
     public void testOrderByMultipleFields(){
         String expected = "SELECT * FROM user ORDER BY age, surname ASC";
-        String actual = select()
+        String actual = select(QueryConstants.STAR)
                 .from(USER_TABLE)
                 .orderBy(Fields.AGE, Fields.SURNAME)
                 .build();

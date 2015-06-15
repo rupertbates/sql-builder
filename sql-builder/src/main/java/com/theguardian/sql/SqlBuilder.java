@@ -1,9 +1,6 @@
 package com.theguardian.sql;
 
 public class SqlBuilder {
-    public static SelectStatement select() {
-        return select("*");
-    }
 
     public static SelectStatement select(String... fields) {
         return new SelectStatement(fields);

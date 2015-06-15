@@ -10,9 +10,9 @@ import static org.junit.Assert.assertEquals;
 public class SelectTests {
 
     @Test
-    public void testSimpleSelect() {
+    public void testSimpleselect() {
         String expected = "SELECT * FROM user";
-        String actual = select()
+        String actual = select(QueryConstants.STAR)
                 .from(Tables.USER_TABLE)
                 .build();
 
@@ -44,7 +44,7 @@ public class SelectTests {
     @Test
     public void testSelectWithGreaterThan() {
         String expected = "SELECT * FROM user WHERE age > 18";
-        String actual = select()
+        String actual = select(QueryConstants.STAR)
                 .from(Tables.USER_TABLE)
                 .where(Fields.AGE)
                 .greaterThan(18)
@@ -56,7 +56,7 @@ public class SelectTests {
     @Test
     public void testSelectWithGreaterThanOrEqualTo() {
         String expected = "SELECT * FROM user WHERE age >= 18";
-        String actual = select()
+        String actual = select(QueryConstants.STAR)
                 .from(Tables.USER_TABLE)
                 .where(Fields.AGE)
                 .greaterThanOrEqualTo(18)
@@ -68,7 +68,7 @@ public class SelectTests {
     @Test
     public void testSelectWithLessThanWhereClause() {
         String expected = "SELECT * FROM user WHERE age < 18";
-        String actual = select()
+        String actual = select(QueryConstants.STAR)
                 .from(Tables.USER_TABLE)
                 .where(Fields.AGE)
                 .lessThan(18)
@@ -80,7 +80,7 @@ public class SelectTests {
     @Test
     public void testSelectWithLessThanOrEqualTo() {
         String expected = "SELECT * FROM user WHERE age <= 18";
-        String actual = select()
+        String actual = select(QueryConstants.STAR)
                 .from(Tables.USER_TABLE)
                 .where(Fields.AGE)
                 .lessThanOrEqualTo(18)
@@ -92,7 +92,7 @@ public class SelectTests {
     @Test
     public void testSelectWithStringIn() {
         String expected = "SELECT * FROM user WHERE surname IN ('bates', 'shields')";
-        String actual = select()
+        String actual = select(QueryConstants.STAR)
                 .from(Tables.USER_TABLE)
                 .where(Fields.SURNAME)
                 .in("bates", "shields")
@@ -104,7 +104,7 @@ public class SelectTests {
     @Test
     public void testSelectWithNumericIn() {
         String expected = "SELECT * FROM user WHERE age IN (18, 23, 45)";
-        String actual = select()
+        String actual = select(QueryConstants.STAR)
                 .from(Tables.USER_TABLE)
                 .where(Fields.AGE)
                 .in(18, 23, 45)
@@ -116,7 +116,7 @@ public class SelectTests {
     @Test
     public void testSelectWithNumericNotIn() {
         String expected = "SELECT * FROM user WHERE age NOT IN (18, 23, 45)";
-        String actual = select()
+        String actual = select(QueryConstants.STAR)
                 .from(Tables.USER_TABLE)
                 .where(Fields.AGE)
                 .notIn(18, 23, 45)
@@ -128,7 +128,7 @@ public class SelectTests {
     @Test
     public void testSelectByFirstNameAndSurname() {
         String expected = "SELECT * FROM user WHERE firstname = 'rupert' AND surname = 'bates'";
-        String actual = select()
+        String actual = select(QueryConstants.STAR)
                 .from(Tables.USER_TABLE)
                 .where(Fields.FIRSTNAME)
                 .equalTo("rupert")
@@ -142,7 +142,7 @@ public class SelectTests {
     @Test
     public void testSelectByFirstNameAndAge() {
         String expected = "SELECT * FROM user WHERE firstname = 'rupert' AND age >= 18";
-        String actual = select()
+        String actual = select(QueryConstants.STAR)
                 .from(Tables.USER_TABLE)
                 .where(Fields.FIRSTNAME)
                 .equalTo("rupert")
@@ -156,7 +156,7 @@ public class SelectTests {
     @Test
     public void testSelectByFirstNameInListAndAge() {
         String expected = "SELECT * FROM user WHERE firstname IN ('rupert', 'Emily') AND age >= 18";
-        String actual = select()
+        String actual = select(QueryConstants.STAR)
                 .from(Tables.USER_TABLE)
                 .where(Fields.FIRSTNAME)
                 .in("rupert", "Emily")
@@ -170,7 +170,7 @@ public class SelectTests {
     @Test
     public void testNotEqualTo() {
         String expected = "SELECT * FROM user WHERE firstname != 'rupert'";
-        String actual = select()
+        String actual = select(QueryConstants.STAR)
                 .from(Tables.USER_TABLE)
                 .where(Fields.FIRSTNAME)
                 .notEqualTo("rupert")
@@ -182,7 +182,7 @@ public class SelectTests {
     @Test
     public void testLike() {
         String expected = "SELECT * FROM user WHERE firstname LIKE 'rup%'";
-        String actual = select()
+        String actual = select(QueryConstants.STAR)
                 .from(Tables.USER_TABLE)
                 .where(Fields.FIRSTNAME)
                 .like("rup%")
@@ -194,7 +194,7 @@ public class SelectTests {
     @Test
     public void testSelectBySurnameOrAge() {
         String expected = "SELECT * FROM user WHERE surname = 'bates' OR age >= 18";
-        String actual = select()
+        String actual = select(QueryConstants.STAR)
                 .from(Tables.USER_TABLE)
                 .where(Fields.SURNAME)
                 .equalTo("bates")
@@ -226,7 +226,7 @@ public class SelectTests {
         String actual = select(Fields.SURNAME)
                 .count(Fields.SURNAME)
                 .from(Tables.USER_TABLE)
-
+                .groupBy(Fields.SURNAME)
                 .build();
 
         assertEquals(expected, actual);

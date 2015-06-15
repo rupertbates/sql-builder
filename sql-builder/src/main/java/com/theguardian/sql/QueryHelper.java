@@ -2,6 +2,7 @@ package com.theguardian.sql;
 
 import static com.theguardian.sql.QueryConstants.CLOSE_BRACKET;
 import static com.theguardian.sql.QueryConstants.COMMA;
+import static com.theguardian.sql.QueryConstants.EMPTY_STRING;
 import static com.theguardian.sql.QueryConstants.OPEN_BRACKET;
 
 class QueryHelper {
@@ -18,6 +19,9 @@ class QueryHelper {
     }
 
     static String getList(String[] values){
+        if(values == null || values.length == 0)
+            return EMPTY_STRING;
+        
         StringBuilder stringBuilder = new StringBuilder();
         for (String value : values) {
             stringBuilder.append(value).append(COMMA);

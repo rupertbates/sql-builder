@@ -9,7 +9,7 @@ public class LimitTests {
     @Test
     public void testSimpleLimit() {
         String expected = "SELECT * FROM user LIMIT 10";
-        String actual = select()
+        String actual = select(QueryConstants.STAR)
                 .from(Tables.USER_TABLE)
                 .limit(10)
                 .build();
@@ -20,7 +20,7 @@ public class LimitTests {
     @Test
     public void testLimitWithOrderBy() {
         String expected = "SELECT * FROM user ORDER BY surname ASC LIMIT 10";
-        String actual = select()
+        String actual = select(QueryConstants.STAR)
                 .from(Tables.USER_TABLE)
                 .orderBy(Tables.Fields.SURNAME)
                 .limit(10)
