@@ -6,10 +6,15 @@ apply plugin: 'java'
 apply plugin: 'maven-publish'
 
 sourceCompatibility = 1.7
+def versionString = '0.6'
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
+}
+
+task sourceJar(type: Jar) {
+    from sourceSets.main.allJava
 }
 
 publishing {
@@ -17,8 +22,11 @@ publishing {
         mavenJava(MavenPublication) {
             groupId 'com.theguardian.sql'
             artifactId 'sql-builder'
-            version '0.1'
+            version versionString
             from components.java
+            artifact(sourceJar) {
+                classifier "sources"
+            }
         }
     }
 }
@@ -29,7 +37,7 @@ bintray {
     user = properties.getProperty('user.name')
     key = properties.getProperty('api.key')
 
-    //publications = ['mavenStuff'] //When uploading Maven-based publication files
+    publications = ['mavenJava']
 
     dryRun = false //Whether to run this as dry-run, without deploying
     publish = true //If version should be auto published after an upload
@@ -40,5 +48,9 @@ bintray {
         desc = 'A library to help with building sql queries in Java'
         websiteUrl = 'https://github.com/rupertbates/sql-builder'
         vcsUrl = 'https://github.com/rupertbates/sql-builder'
+        version {
+            name = versionString
+        }
     }
+
 }
